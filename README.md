@@ -14,5 +14,5 @@ python main.py \
   --export_dir [EXPORT DIRECTORY TO STORE CSV FILES]  
   --export_timeframes [EXPORT TIMEFRAME IN PANDAS TYPE: "1T" or like "1T,1H,1D"]  
 
-### tistory documentation (KOR)
-[bellman.tistory.com/7]
+### documentation (KOR)
+[Tistory](bellman.tistory.com/7)
