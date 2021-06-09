@@ -165,7 +165,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # argument #1 db_path: 데이터베이스 경로
-    parser.add_argument("--db_path", default="./binance_futures.db", type=str)
+    parser.add_argument("--db_path", default="/home/ych/Storage/binance/binance_futures.db", type=str)
     
     # argument #2 symbols: "all"로 설정 시 모든 티커 다운로드, 혹은 ,를 구분자로 하여 스트링으로 입력 가능
     parser.add_argument("--symbols", default='all', type=str)
@@ -180,9 +180,9 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # 다운로드 함수 실행 (다운로드 모드)
-    if args.export_path is None:
+    if args.export_dir is None:
         download_binance_futures_data(args.db_path, args.symbols)
     # 익스포트 함수 실행 (익스포트 모드)
     else:
-        export_data(args.db_path, args.symbols, args.timeframes, args.export_dir)
+        export_data(args.db_path, args.symbols, args.export_timeframes, args.export_dir)
 
