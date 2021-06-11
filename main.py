@@ -2,7 +2,7 @@ import ccxt, sqlite3, argparse, time, os
 import pandas as pd
 
 
-def download_binance_futures_data(db_path="/home/ych/Storage/binance/binance_futures.db", symbols="all"):
+def download_binance_futures_data(market, db_path="/home/ych/Storage/binance/binance_futures.db", symbols="all"):
     # DB 초기화
     db = sqlite3.connect(db_path)
 
@@ -10,7 +10,7 @@ def download_binance_futures_data(db_path="/home/ych/Storage/binance/binance_fut
     binance = ccxt.binance(
         {
             "options" : {
-                "defaultType" : "future"
+                "defaultType" : market
             },
             "enableRateLimit" : True
         }
@@ -163,6 +163,9 @@ if __name__ == "__main__":
 
     # argparse 
     parser = argparse.ArgumentParser()
+    
+    # argument #0 market "spot" or "future"
+    parser.add_argument("--market", default="future", type=str)
 
     # argument #1 db_path: 데이터베이스 경로
     parser.add_argument("--db_path", default="/home/ych/Storage/binance/binance_futures.db", type=str)
@@ -178,11 +181,14 @@ if __name__ == "__main__":
 
     # 파싱
     args = parser.parse_args()
-
+    
+    if not args.market in ["future", "spot"]:
+        raise ValueError(f"market should be 'spot' or 'future', got {args.market}")
+        
     # 다운로드 함수 실행 (다운로드 모드)
     if args.export_dir is None:
         download_binance_futures_data(args.db_path, args.symbols)
     # 익스포트 함수 실행 (익스포트 모드)
     else:
-        export_data(args.db_path, args.symbols, args.export_timeframes, args.export_dir)
+        export_data(args.market, args.db_path, args.symbols, args.export_timeframes, args.export_dir)
 
