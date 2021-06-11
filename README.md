@@ -4,7 +4,7 @@
 
 ### download mode
 python main.py \  
-  --market [DOWNLOAD MARKET, spot or future]
+  --market [DOWNLOAD MARKET, spot or future]   
   --db_path [DATABASE PATH TO DOWNLOAD DATA AND STORE]    
   --symbols ["all" or like "BTC/USDT,ETH/USDT"]   
 
