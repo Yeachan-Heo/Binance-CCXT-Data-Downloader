@@ -187,7 +187,7 @@ if __name__ == "__main__":
         
     # 다운로드 함수 실행 (다운로드 모드)
     if args.export_dir is None:
-        download_binance_futures_data(args.db_path, args.symbols)
+        download_binance_futures_data(args.market, args.db_path, args.symbols)
     # 익스포트 함수 실행 (익스포트 모드)
     else:
         export_data(args.market, args.db_path, args.symbols, args.export_timeframes, args.export_dir)
