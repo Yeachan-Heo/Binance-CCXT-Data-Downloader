@@ -150,7 +150,7 @@ def export_data(db_path, symbols, timeframes, export_dir):
             df = read_binance_futures_data(db_path)
             
             # export path: export_dir/symbol_timeframe.csv
-            export_path = os.path.join(export_dir, f"{symbol}_{timeframe}.csv")
+            export_path = os.path.join(export_dir, f"{symbol.replace("/", "")}_{timeframe}.csv")
             
             # csv로 내보내기
             df.to_csv(export_path) 
@@ -190,5 +190,5 @@ if __name__ == "__main__":
         download_binance_futures_data(args.market, args.db_path, args.symbols)
     # 익스포트 함수 실행 (익스포트 모드)
     else:
-        export_data(args.market, args.db_path, args.symbols, args.export_timeframes, args.export_dir)
+        export_data(args.db_path, args.symbols, args.export_timeframes, args.export_dir)
 
