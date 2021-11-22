@@ -150,7 +150,7 @@ def export_data(db_path, symbols, timeframes, export_dir):
             df = read_binance_futures_data(db_path)
             
             # export path: export_dir/symbol_timeframe.csv
-            export_path = os.path.join(export_dir, f"{symbol.replace("/", "")}_{timeframe}.csv")
+            export_path = os.path.join(export_dir, f'{symbol.replace("/", "")}_{timeframe}.csv')
             
             # csv로 내보내기
             df.to_csv(export_path) 
